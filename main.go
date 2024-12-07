@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"github.com/mvellucci100/MSDS431Week9_TrimMedMean/trimmedmean"
 	"time"
+	"log"
 )
 
 // Function to generate a sample of integers and floats
@@ -29,14 +30,20 @@ func generateSample(size int, isInt bool) interface{} {
 
 func main() {
 	// Generate samples
-	intSample := generateSample(100, true).([]int)
+	//intSample := generateSample(100, true).([]int)
 	floatSample := generateSample(100, false).([]float64)
 
-	// Compute the trimmed mean for integers and floats
-	trimmedMeanInt := trimmedmean.TrimmedMeanInt(intSample, 0.05) // 5% trimming
-	trimmedMeanFloat := trimmedmean.TrimmedMean(floatSample, 0.05) // 5% trimming
+// Call TrimmedMeanInt with 5% trimming
+//trimmedMeanInt, err := trimmedmean.TrimmedMean(intSample, 0.05)
+//if err != nil {
+//	log.Fatalf("Error calculating trimmed mean for integers: %v", err)
+//}
+//fmt.Printf("Trimmed Mean (Integers): %v\n", trimmedMeanInt)
 
-	// Print the results
-	fmt.Printf("Trimmed mean for integer sample: %v\n", trimmedMeanInt)
-	fmt.Printf("Trimmed mean for float sample: %v\n", trimmedMeanFloat)
+// Call TrimmedMean with 5% trimming
+trimmedMeanFloat, err := trimmedmean.TrimmedMean(floatSample, 0.05)
+if err != nil {
+	log.Fatalf("Error calculating trimmed mean for floats: %v", err)
+}
+fmt.Printf("Trimmed Mean (Floats): %v\n", trimmedMeanFloat)
 }
